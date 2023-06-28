@@ -43,14 +43,12 @@ def telegram_post():
     body = request.get_json()
     chat_id = body['message']['chat']['id']
     message = body['message']['text']
-
-    ## TODO Logic
+    
     r = openai(message)
     for response in r['choices']:
         message = response['message']['content']
         sent = send_message(chat_id, message)
         return sent
-    ## End TODO
 
 
 if __name__ == '__main__':
